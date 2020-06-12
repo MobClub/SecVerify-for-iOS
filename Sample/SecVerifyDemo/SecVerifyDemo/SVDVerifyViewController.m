@@ -12,10 +12,14 @@
 #import "FLAnimatedImage.h"
 #import <SecVerify/SecVerify.h>
 #import <SecVerify/SVSDKLoginManager.h>
+#import <MOBFoundation/MobSDK+Privacy.h>
+
+
 #import "Masonry.h"
 #import "SVProgressHUD.h"
 #import "SVDPolicyManager.h"
 #import "SVDLoginViewController.h"
+
 
 //是否显示错误弹框(因账号密码登陆关闭的loginVC不需要显示)
 static BOOL showErrorAlert = YES;
@@ -56,6 +60,8 @@ static BOOL dismissLoginVcBySelf = NO;
 /// 版本号 Label
 @property (nonatomic, strong) UILabel *verisonLabel;
 
+/// 隐私状态切换
+//@property (nonatomic, strong) UIButton *privacyBtn;
 
 
 @property (nonatomic, assign) BOOL isPreLogin;
@@ -105,7 +111,8 @@ static BOOL dismissLoginVcBySelf = NO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.isSmallScreen = [UIScreen mainScreen].bounds.size.width <= 375 && ![SVDVerifyViewController isPhoneX];
+    
+    self.isSmallScreen = ([UIScreen mainScreen].bounds.size.width <= 414 || [UIScreen mainScreen].bounds.size.height <= 414) && ![SVDVerifyViewController isPhoneX];
     
     [self setupSubViews];
     
@@ -119,6 +126,10 @@ static BOOL dismissLoginVcBySelf = NO;
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    [MobSDK getPrivacyPolicy:@"1" language:@"zh" compeletion:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+        
+    }];
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -157,6 +168,21 @@ static BOOL dismissLoginVcBySelf = NO;
         [self enableVerifyBtn:YES];
     }
 }
+
+//static BOOL allowPermissionStatus = NO;
+//#pragma mark - 隐私协议切换
+//- (void)switchPrivacyClicked:(UIButton *)button
+//{
+//    allowPermissionStatus = !allowPermissionStatus;
+//
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    [MobSDK uploadPrivacyPermissionStatus:allowPermissionStatus onResult:^(BOOL success) {
+//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//
+//    }];
+//
+//    _privacyBtn.backgroundColor = [UIColor redColor];
+//}
 
 
 #pragma mark - 登陆
@@ -260,20 +286,29 @@ static BOOL dismissLoginVcBySelf = NO;
             [[SVDSerive sharedSerive] verifyGetPhoneNumberWith:resultDic completion:^(NSError *error, NSString * _Nonnull phone) {
                 NSLog(@"获取完整手机号 phone: %@ error: %@",phone, error);
                 [SVProgressHUD dismiss];
-                //手动关闭界面的时候使用
-                if(dismissLoginVcBySelf)
-                {
-                    [SecVerify finishLoginVc:^{
-                        NSLog(@"****************手动关闭界面***************");
-                    }];
-                }
                 
-                // 界面跳转
-                SVDSuccessViewController *successVC = [[SVDSuccessViewController alloc] init];
-                successVC.phone = phone;
-                successVC.error = error;
-                successVC.isShowRealError = showRealError;
-                [weakSelf.navigationController pushViewController:successVC animated:YES];
+//                if(!error)
+//                {
+                    //手动关闭界面的时候使用
+                    if(dismissLoginVcBySelf)
+                    {
+                        [SecVerify finishLoginVc:^{
+                            NSLog(@"****************手动关闭界面***************");
+                        }];
+                    }
+                    
+                    // 界面跳转
+                    SVDSuccessViewController *successVC = [[SVDSuccessViewController alloc] init];
+                    successVC.phone = phone;
+                    successVC.error = error;
+                    successVC.isShowRealError = showRealError;
+                    [weakSelf.navigationController pushViewController:successVC animated:YES];
+//                }
+//                else
+//                {
+//                    [SVSDKLoginManager reLoginVCEnable];
+//                }
+
                 
             }];
             
@@ -299,6 +334,7 @@ static BOOL dismissLoginVcBySelf = NO;
     WeakSelf
     // 设置是否手动关闭授权页面
 //    model.manualDismiss = @(YES);
+//    dismissLoginVcBySelf = [model.manualDismiss boolValue];
     
     // 支持横屏
     model.shouldAutorotate = @(YES);
@@ -340,7 +376,7 @@ static BOOL dismissLoginVcBySelf = NO;
     // 复选框尺寸
 //    model.checkSize = [NSValue valueWithCGSize:CGSizeMake(20, 20)];
     // 隐私条款check框是否隐藏
-    model.checkHidden = @(YES);
+    model.checkHidden = @(NO);
     
     //*******隐私条款设置*******
     // 隐私条款基本文字颜色
@@ -357,6 +393,17 @@ static BOOL dismissLoginVcBySelf = NO;
     model.privacyProtocolMarkArr = @[@"《",@"》"];
     // 隐私条款多行时行距
     model.privacyLineSpacing = @(4.0);
+    
+    model.isPrivacyOperatorsLast = @(YES);
+    model.privacyFirstTextArr = @[@"Mob服务协议",@"http://www.mob.com/policy/zh",@"、"];
+    model.privacySecondTextArr = @[@"百度服务协议",@"http://www.baidu.com",@"、"];
+//    model.privacyWebTitle = [[NSAttributedString alloc] initWithString:@"隐私协议" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
+    
+    NSMutableAttributedString *t1 = [[NSMutableAttributedString alloc] initWithString:@"用户协议" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
+    NSMutableAttributedString *t2 = [[NSMutableAttributedString alloc] initWithString:@"隐私政策" attributes:@{NSForegroundColorAttributeName: [UIColor yellowColor]}];
+    NSMutableAttributedString *t3 = [[NSMutableAttributedString alloc] initWithString:@"中国移动认证服务协议" attributes:@{NSForegroundColorAttributeName: [UIColor blueColor]}];
+    model.privacytitleArray = @[t1, t2, t3];
+    
     
     //*******登陆按钮设置*******
     // 登录按钮文本
@@ -469,7 +516,7 @@ static BOOL dismissLoginVcBySelf = NO;
     
     
     //登录页面协议size
-    CGSize privacySize = [SVSDKHelpExt loginProtocolSize:model maxWidth:(realScreenWidth - 110)];
+    CGSize privacySize = [SVSDKHelpExt loginProtocolSize:model maxWidth:(realScreenWidth - 60)];
     
     //logo 距离上边距离
     float topHeight = realScreenHeight * 0.15; //50.0/603.0 *(realScreenHeight - SVD_StatusBarSafeBottomMargin - 44 - SVD_TabbarSafeBottomMargin);
@@ -597,11 +644,20 @@ static BOOL dismissLoginVcBySelf = NO;
     }
     
     //隐私条款
+//    if(realScreenWidth>realScreenHeight)
+//    {
+//        privacySize = [SVSDKHelpExt loginProtocolSize:model maxWidth:(realScreenWidth - 60)];
+//    }
+//    else
+//    {
+//        privacySize = [SVSDKHelpExt loginProtocolSize:model maxWidth:(realScreenHeight - 60)];
+//    }
     if (!landscapeLayouts.privacyLayout) {
         SecVerifyLayout *layout = [[SecVerifyLayout alloc] init];
-        layout.layoutBottom = @(10);
-        layout.layoutWidth = @(realScreenHeight);
-        layout.layoutHeight = @(privacySize.height);
+        layout.layoutBottom = @(-5);
+        BOOL isIPhone5 = ([UIScreen mainScreen].bounds.size.width == 320 && [UIScreen mainScreen].bounds.size.height == 568) || ([UIScreen mainScreen].bounds.size.width == 568 && [UIScreen mainScreen].bounds.size.height == 320);
+        layout.layoutWidth = (isIPhone5 || realScreenWidth <= 414) ? @(450) : @(privacySize.width);
+        layout.layoutHeight = (isIPhone5 || realScreenWidth <= 414) ? @(privacySize.height * 0.5) : @(privacySize.height);
         layout.layoutCenterX = @(0);
         
         landscapeLayouts.privacyLayout = layout;
@@ -655,7 +711,7 @@ static BOOL dismissLoginVcBySelf = NO;
     // 隐私条款check框默认状态
     model.checkDefaultState = @(YES);
     // 隐私条款check框是否隐藏
-    model.checkHidden = @(YES);
+    model.checkHidden = @(NO);
     
     //*******隐私条款设置*******
     // 隐私条款基本文字颜色
@@ -667,12 +723,14 @@ static BOOL dismissLoginVcBySelf = NO;
     // 隐私条款协议文字颜色
     model.privacyAgreementColor = [UIColor colorWithRed:0/255.0 green:182/255.0 blue:181/255.0 alpha:1/1.0];
     // 隐私条款应用名称
-    model.privacyAppName = @"秒验Demo";
+    model.privacyAppName = @"秒验";
     // 协议文本前后符号@[@"《",@"》"]
     model.privacyProtocolMarkArr = @[@"《",@"》"];
     // 隐私条款多行时行距
     model.privacyLineSpacing = @(4.0);
     
+    model.privacyFirstTextArr = @[@"Mob服务协议",@"http://www.mob.com/policy/zh",@"、"];
+
     //*******登陆按钮设置*******
     // 登录按钮文本
     model.loginBtnText = @"一键登录";
@@ -718,7 +776,7 @@ static BOOL dismissLoginVcBySelf = NO;
     }];
     
     //登录页面协议size
-    CGSize privacySize = [SVSDKHelpExt loginProtocolSize:model maxWidth:(realScreenWidth - 50)];
+    CGSize privacySize = [SVSDKHelpExt loginProtocolSize:model maxWidth:(realScreenWidth)];
     
     //logo 距离上边距离
     float topHeight = 35.0;//realScreenHeight * 0.15;
@@ -781,8 +839,8 @@ static BOOL dismissLoginVcBySelf = NO;
         SecVerifyLayout *layout = [[SecVerifyLayout alloc] init];
         layout.layoutBottom = @(-20);
         layout.layoutCenterX = @(0);
-        layout.layoutWidth = @(privacySize.width);
-        layout.layoutHeight = @(privacySize.height);
+        layout.layoutWidth = @(privacySize.width - 50);
+        layout.layoutHeight = @(privacySize.height + 20);
 
         layouts.privacyLayout = layout;
     }
@@ -851,8 +909,8 @@ static BOOL dismissLoginVcBySelf = NO;
     if (!landscapeLayouts.privacyLayout) {
         SecVerifyLayout *layout = [[SecVerifyLayout alloc] init];
         layout.layoutBottom = @(-5);
-        layout.layoutWidth = @(privacySize.width);
-        layout.layoutHeight = @(privacySize.height);
+        layout.layoutWidth = @(privacySize.width - 10);
+        layout.layoutHeight = @(privacySize.height + 20);
         layout.layoutCenterX = @(0);
         
         landscapeLayouts.privacyLayout = layout;
@@ -938,6 +996,8 @@ static BOOL dismissLoginVcBySelf = NO;
     // 底部
     [self setupBottomViews];
     
+    // 刷新子控件状态
+    [self refrashSubViewsWithViewSize:self.view.frame.size];
     // 布局子视图
     [self refreshSubviewsLayoutWithSize:self.view.frame.size];
 }
@@ -1036,6 +1096,10 @@ static BOOL dismissLoginVcBySelf = NO;
     [self.view addSubview:versionL];
     
     
+//    _privacyBtn = [[UIButton alloc] init];
+//    [_privacyBtn addTarget:self action:@selector(switchPrivacyClicked:) forControlEvents:UIControlEventTouchUpInside];
+//
+//    [self.view addSubview:_privacyBtn];
     
 }
 
@@ -1172,6 +1236,14 @@ static BOOL dismissLoginVcBySelf = NO;
             make.centerX.mas_equalTo(0);
         }
     }];
+    
+    
+//    [self.privacyBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(0);
+//        make.left.right.mas_equalTo(0);
+//        make.height.mas_equalTo(150);
+//    }];
+    
     
 }
 

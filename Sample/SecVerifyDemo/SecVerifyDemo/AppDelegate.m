@@ -41,7 +41,7 @@
     [MobSDK uploadPrivacyPermissionStatus:YES onResult:nil];
     
     // 开启调试模式
-//    [SecVerify setDebug:YES];
+    [SecVerify setDebug:YES];
     // 设置超时时间
 //    [SecVerify setTimeoutInterval:3.0];
     
