@@ -10,11 +10,9 @@
 #import <Bugly/Bugly.h>
 
 #import "SVDVerifyViewController.h"
-#import "SVDVerifyNaviationViewController.h"
 #import <MOBFoundation/MOBFoundation.h>
 #import <MOBFoundation/MobSDK+Privacy.h>
-
-#import <SecVerify/SecVerify.h>
+#import "SVDVerifyNaviationViewController.h"
 
 @interface AppDelegate ()
 
@@ -39,11 +37,6 @@
     
     // 默认同意隐私协议
     [MobSDK uploadPrivacyPermissionStatus:YES onResult:nil];
-    
-    // 开启调试模式
-    [SecVerify setDebug:YES];
-    // 设置超时时间
-//    [SecVerify setTimeoutInterval:3.0];
     
     return YES;
 }

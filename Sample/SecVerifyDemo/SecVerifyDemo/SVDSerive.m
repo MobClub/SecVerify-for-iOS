@@ -24,40 +24,9 @@
     return instance;
 }
 
-- (void)verifyGetPhoneNumberWith:(NSDictionary *)result completion:(void (^) (NSError *error, NSString *phone))handler
-{
-    NSDictionary *params = nil;
-    if ([result isKindOfClass:[NSDictionary class]])
-    {
-        NSString *token = result[@"token"];
-        NSString *operatorType = result[@"operatorType"];
-        NSString *operatorToken = result[@"operatorToken"];
-        NSString *appKey = [MobSDK appKey];
-        
-        if (token && operatorType && operatorToken)
-        {
-            if(appKey)
-            {
-                params = @{
-                           @"token" : token,
-                           @"opToken" : operatorToken,
-                           @"operator" : operatorType,
-                           @"appkey":appKey
-                           };
-            }
-            else
-            {
-                params = @{
-                           @"token" : token,
-                           @"opToken" : operatorToken,
-                           @"operator" : operatorType
-                           };
-            }
++ (void)verifyGetPhoneNumberWith:(NSDictionary *)result completion:(void (^) (NSError *error, NSString *phone))handler{
 
-        }
-    }
-    
-    if (!params) {
+    if (!result) {
         NSError *error = [NSError errorWithDomain:@"com.svd.error" code:0 userInfo:@{@"description":@"获取完整手机号参数异常"}];
         if (handler) {
             handler(error, nil);
@@ -70,7 +39,7 @@
     session.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSError *serializationError = nil;
-    NSMutableURLRequest *request = [session.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:SVD_LoginURL relativeToURL:nil] absoluteString] parameters:params error:&serializationError];
+    NSMutableURLRequest *request = [session.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:SVD_LoginURL relativeToURL:nil] absoluteString] parameters:result error:&serializationError];
     if(!serializationError)
     {
         
