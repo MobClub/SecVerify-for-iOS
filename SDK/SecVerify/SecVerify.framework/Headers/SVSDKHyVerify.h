@@ -127,6 +127,23 @@
  */
 + (BOOL)isVerifyEnable;
 
+#pragma maek - 本机认证
+/**
+ * 本机认证获取Token
+ * @param handler 结果回调。当error为空，resultDic为本机认证token
+ */
++ (void)mobileAuth:(SecVerifyResultHander _Nullable )handler;
+
+/**
+ * 本机号码认证
+ * @param phoneNum 手机号
+ * @param tokenInfos 预请求得到的token信息
+ * @param completion 结果回调
+ */
++ (void)mobileAuthWith:(NSString * _Nonnull)phoneNum
+                 token:(NSDictionary * _Nonnull)tokenInfos
+               timeOut:(NSTimeInterval)timeOut
+            completion:(void(^_Nullable)(NSDictionary * _Nullable result, NSError * _Nullable error))completion;
 
 #pragma mark - 设置超时
 /**

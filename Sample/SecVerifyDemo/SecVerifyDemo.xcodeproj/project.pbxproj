@@ -62,7 +62,6 @@
 		B145212323E9235400D3259A /* SecVerify.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B145211A23E9235400D3259A /* SecVerify.bundle */; };
 		B167829323ED7EC2009BE319 /* SVDPolicyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B167829223ED7EC2009BE319 /* SVDPolicyWebViewController.m */; };
 		B1A6A9BC23F6783F003C0FAE /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A6A9BB23F6783F003C0FAE /* MOBFoundation.framework */; };
-		BD6926002552A39800C3CBAA /* account_login_sdk_core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD6925FE2552A39800C3CBAA /* account_login_sdk_core.framework */; };
 		BDFCE5F52553DAE30042BCA1 /* SVDDemoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFCE5F42553DAE30042BCA1 /* SVDDemoHelper.m */; };
 		BDFE45682555233500E031B9 /* SVDMobileAuthCommitCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE45672555233500E031B9 /* SVDMobileAuthCommitCodeVC.m */; };
 /* End PBXBuildFile section */
@@ -195,7 +194,6 @@
 			files = (
 				5E01DE8424247F6C0073CFB3 /* CoreTelephony.framework in Frameworks */,
 				B145211E23E9235400D3259A /* EAccountHYSDK.framework in Frameworks */,
-				BD6926002552A39800C3CBAA /* account_login_sdk_core.framework in Frameworks */,
 				91CDB9F1231CEE39001D3D48 /* Bugly.framework in Frameworks */,
 				9199DDD8231CBB4900B8F428 /* SystemConfiguration.framework in Frameworks */,
 				9199DDD6231CBB2200B8F428 /* libc++.tbd in Frameworks */,
@@ -808,7 +806,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Yong Lian Niu (9HWH396783)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30020;
+				CURRENT_PROJECT_VERSION = 30030;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = C87V99P45A;
@@ -821,7 +819,6 @@
 					"$(PROJECT_DIR)/../../SDK/Required",
 					"$(PROJECT_DIR)/SecVerifyDemo/ThirdLibs",
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../SDK/SecVerify/PlatformSDK/UnionWoStore",
 				);
 				GCC_PREFIX_HEADER = SecVerifyDemo/SVDPrefixHeader.pch;
 				INFOPLIST_FILE = "SecVerifyDemo/Supporting Files/Info.plist";
@@ -831,12 +828,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobtech.dailydiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DailyNewMobile;
+				PROVISIONING_PROFILE_SPECIFIER = new12;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -847,7 +844,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Yong Lian Niu (9HWH396783)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30020;
+				CURRENT_PROJECT_VERSION = 30030;
 				DEVELOPMENT_TEAM = C87V99P45A;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -858,7 +855,6 @@
 					"$(PROJECT_DIR)/../../SDK/Required",
 					"$(PROJECT_DIR)/SecVerifyDemo/ThirdLibs",
 					"$(inherited)",
-					"$(PROJECT_DIR)/../../SDK/SecVerify/PlatformSDK/UnionWoStore",
 				);
 				GCC_PREFIX_HEADER = SecVerifyDemo/SVDPrefixHeader.pch;
 				INFOPLIST_FILE = "SecVerifyDemo/Supporting Files/Info.plist";
@@ -868,11 +864,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.0.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobtech.dailydiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DailyNewMobile;
+				PROVISIONING_PROFILE_SPECIFIER = new12;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

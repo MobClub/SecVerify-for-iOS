@@ -81,16 +81,18 @@ static BOOL showDealloc = NO;
 - (void)startPreLogin{
     WeakSelf
     
+    [SVSDKHyVerify setDebug:YES];
     [SVSDKHyVerify preLogin:^(NSDictionary * _Nullable resultDic, NSError * _Nullable error) {
-        
+
         [weakSelf enableVerifyBtn:YES];
-        
+
         if (!error){
             NSLog(@"### 预取号成功: %@", resultDic);
         }else{
             NSLog(@"### 预取号失败%@", error);
         }
     }];
+    
 }
 
 
@@ -279,7 +281,7 @@ static BOOL showDealloc = NO;
     NSLog(@"开始请求本机认证Token, 开始时间: %02f", [[NSDate date] timeIntervalSince1970]);
     
     __weak typeof(self) weakSelf = self;
-    [SecVerify preMobileAuth:^(NSDictionary * _Nullable resultDic, NSError * _Nullable error) {
+    [SVSDKHyVerify mobileAuth:^(NSDictionary * _Nullable resultDic, NSError * _Nullable error) {
         NSLog(@"请求本机认证Token完成, 结束时间: %02f", [[NSDate date] timeIntervalSince1970]);
         if (resultDic
             && [resultDic isKindOfClass:[NSDictionary class]]
