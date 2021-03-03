@@ -11,7 +11,7 @@
 #import "SVDDemoHelper.h"
 #import "SVProgressHUD.h"
 
-#import <SecVerify/SecVerify.h>
+//#import <SecVerify/SecVerify.h>
 #import <SecVerify/SVSDKHyVerify.h>
 
 #define KSMSDNeedMoveMaxHeight 570
@@ -613,7 +613,7 @@
 - (BOOL)isMobileNumberOnly:(NSString *)mobileNum
 {
 
-    NSString * MOBILE = @"^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$";
+    NSString * MOBILE = @"^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[0-9])\\d{8}$";
 
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
 
