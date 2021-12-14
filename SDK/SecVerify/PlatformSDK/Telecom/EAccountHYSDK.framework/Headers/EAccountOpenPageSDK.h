@@ -14,7 +14,10 @@
 #import "EAccountHYUiEventHandler.h"
 
 /**
- 行业版SDK v3.8.5 20201030
+ 行业版SDK v3.8.11 20211204
+ */
+/**
+ 行业版SDK v3.8.10 20211115
  */
 /**
  声明一个block
@@ -40,6 +43,11 @@ typedef   void (^clickEventHandler) (NSString * _Nonnull senderTag);
  @param eUiHandler 继续执行后续操作的handler，详细见EAccountHYUiEventHandler类
  */
 typedef   void (^secClickEventHandler) (UIView * _Nonnull view, EAccountHYUiEventHandler * _Nonnull eUiHandler);
+
+/**
+ 声明一个block，登录页面消失后调用的block
+ */
+typedef   void (^completionBlock) ();
 
 @interface EAccountOpenPageSDK : NSObject
 
@@ -151,6 +159,9 @@ typedef   void (^secClickEventHandler) (UIView * _Nonnull view, EAccountHYUiEven
 /**
  主动关闭授权页面
  */
-+ (void)closeOpenAuthVC;
++ (void)closeOpenAuthVC DEPRECATED_MSG_ATTRIBUTE("Please use `didCloseOpenAuthVC:completion` instead");;
 
+/// 授权页面已关闭，效果与+ (void)closeOpenAuthVC一致，不要重复调用，建议调用此方法关闭登录页
+/// @param completion 页面关闭后调用的block
++ (void)didCloseOpenAuthVC:(nullable completionBlock)completion;
 @end

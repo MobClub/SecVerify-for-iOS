@@ -10,7 +10,7 @@
 #define SVSDKDefine_h
 
 //SDK版本号
-#define KSVSDKVersion @"3.1.0"
+#define KSVSDKVersion @"3.1.2"
 //产品标识
 #define KSVIdentifier @"SECVERIFY"
 
