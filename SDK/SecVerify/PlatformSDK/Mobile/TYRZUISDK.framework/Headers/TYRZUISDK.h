@@ -1,12 +1,9 @@
 //
-//  TYRZSDK.h
+//  TYRZUISDK.h
 //  TYRZSDK
 //
 
-#import "UASDKLogin.h"
-#import "UASDKErrorCode.h"
-#import "UAEnums.h"
-#import "UACustomModel.h"
-
-
-
+#import "UAFSDKLogin.h"
+#import "UAFSDKErrorCode.h"
+#import "UAFEnums.h"
+#import "UAFCustomModel.h"

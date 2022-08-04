@@ -4,17 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/ZOAuthManager.h</key>
-		<data>
-		Ienx6rvM1g1+f1s7ZICmHjFTWK0=
-		</data>
-		<key>Headers/ZTOAuthManager.h</key>
-		<data>
-		Yg0RW8IZws/IkK5JfNHdJdauFUI=
-		</data>
 		<key>Headers/ZUOAuthManager.h</key>
 		<data>
-		vQjZ3rGnvPH5unmuuAhhNN8BuyM=
+		b5C8utr94AbbAMsRUK8Eeqg9r8Y=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -23,37 +15,15 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/ZOAuthManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Ienx6rvM1g1+f1s7ZICmHjFTWK0=
-			</data>
-			<key>hash2</key>
-			<data>
-			q7QhcCkG76qNNTTXIdCJVpT3OaL/Zf4INFSddKsq2jA=
-			</data>
-		</dict>
-		<key>Headers/ZTOAuthManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Yg0RW8IZws/IkK5JfNHdJdauFUI=
-			</data>
-			<key>hash2</key>
-			<data>
-			gYAD75XQd+0Hpf0wLqki0J7t4JstOCS8Kp7HwSQV5/U=
-			</data>
-		</dict>
 		<key>Headers/ZUOAuthManager.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vQjZ3rGnvPH5unmuuAhhNN8BuyM=
+			b5C8utr94AbbAMsRUK8Eeqg9r8Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			26cP5YgH1gCN4jat375TLZNSe8qBLXi/mvTCLS8GHP8=
+			ZdnVQsG0PZsXJtzr5vuZY0iVbi8dQAFbkfcMx305ZAs=
 			</data>
 		</dict>
 	</dict>

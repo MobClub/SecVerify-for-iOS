@@ -63,6 +63,7 @@
 		B1A6A9BC23F6783F003C0FAE /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A6A9BB23F6783F003C0FAE /* MOBFoundation.framework */; };
 		BDFCE5F52553DAE30042BCA1 /* SVDDemoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFCE5F42553DAE30042BCA1 /* SVDDemoHelper.m */; };
 		BDFE45682555233500E031B9 /* SVDMobileAuthCommitCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BDFE45672555233500E031B9 /* SVDMobileAuthCommitCodeVC.m */; };
+		CE73CC3727F2FA5400325B28 /* account_login_sdk_noui_core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE73CC3627F2FA5400325B28 /* account_login_sdk_noui_core.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +183,7 @@
 		BDFCE5F42553DAE30042BCA1 /* SVDDemoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVDDemoHelper.m; sourceTree = "<group>"; };
 		BDFE45662555233500E031B9 /* SVDMobileAuthCommitCodeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVDMobileAuthCommitCodeVC.h; sourceTree = "<group>"; };
 		BDFE45672555233500E031B9 /* SVDMobileAuthCommitCodeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVDMobileAuthCommitCodeVC.m; sourceTree = "<group>"; };
+		CE73CC3627F2FA5400325B28 /* account_login_sdk_noui_core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = account_login_sdk_noui_core.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				B1A6A9BC23F6783F003C0FAE /* MOBFoundation.framework in Frameworks */,
 				9199DDD4231CB72D00B8F428 /* libz.tbd in Frameworks */,
 				B145211D23E9235400D3259A /* SecVerify.framework in Frameworks */,
+				CE73CC3727F2FA5400325B28 /* account_login_sdk_noui_core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +480,7 @@
 		B145211823E9235400D3259A /* Union */ = {
 			isa = PBXGroup;
 			children = (
+				CE73CC3627F2FA5400325B28 /* account_login_sdk_noui_core.framework */,
 				B145211923E9235400D3259A /* OAuth.framework */,
 			);
 			path = Union;
@@ -792,7 +796,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31020;
+				CURRENT_PROJECT_VERSION = 31060;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				DEVELOPMENT_TEAM = 6726N8K77K;
@@ -814,7 +818,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyds.Secverify;
@@ -830,7 +834,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31020;
+				CURRENT_PROJECT_VERSION = 31060;
 				DEVELOPMENT_TEAM = 6726N8K77K;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -850,7 +854,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1.2;
+				MARKETING_VERSION = 3.1.6;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyds.Secverify;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -14,10 +14,7 @@
 #import "EAccountHYUiEventHandler.h"
 
 /**
- 行业版SDK v3.8.11 20211204
- */
-/**
- 行业版SDK v3.8.10 20211115
+ 行业版SDK v3.8.13 20220307
  */
 /**
  声明一个block
